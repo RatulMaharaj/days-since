@@ -2,6 +2,7 @@ from datetime import datetime
 from http.server import BaseHTTPRequestHandler
 import datetime as dt
 import numpy as np
+import pytz
 
 
 class handler(BaseHTTPRequestHandler):
@@ -12,7 +13,7 @@ class handler(BaseHTTPRequestHandler):
 
         days_off = 1
         start = dt.date(2022, 2, 1)
-        end = dt.date.today()
+        end = dt.datetime.now(pytz.timezone('Africa/Johannesburg')).date()
         days_since = np.busday_count(start, end) - days_off
 
         message = f"{days_since}"
